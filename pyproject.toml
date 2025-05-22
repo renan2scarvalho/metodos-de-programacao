@@ -1,0 +1,101 @@
+[tool.poetry]
+name = "metodos-de-programacao"
+description = "Estudo dos Principais Métodos de Programação"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+ipykernel = "^6.29.4"
+matplotlib = "^3.9.0"
+pandas = "^2.2.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+pytest-cov = "^6.0.0"
+taskipy = "^1.14.1"
+ruff = "^0.9.10"
+httpx = "^0.28.1"
+isort = "^6.0.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.isort]
+profile = "black"
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+import_heading_stdlib = "Bibliotecas padrão"
+import_heading_thirdparty = "Bibliotecas de terceiros"
+import_heading_firstparty = "Módulos locais"
+
+[tool.ruff]
+line-length = 105
+extend-exclude = ['migrations']
+target-version = "py39"
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+ignore = [
+    'PLR0914', # Too many local variables
+    'PLR2004', # Magic value used in comparison
+    'PLR6301', # Method could be a function/static method
+    'PLR1702', # Too many nested blocks
+    'PLR0915', # Too many statements
+    'F841',    # Local variable is assigned to but never used
+    'F403',    # 'from module import *' used
+    'PLC1901', # Compare to empty string
+    'PLW2901', # For loop variable overwritten
+    'F405',    # Name may be undefined, or defined from star imports
+    'PLR0911', # Too many return statements
+    'PLR0912', # Too many branches
+    'E501',    # Line too long
+    'PLR1714', # Consider merging multiple comparisons
+    'PLR0913', # Too many arguments to function call
+    'PLW1514', # Using open without explicit encoding
+    'PLC0415', # Import should be at top of file
+    'PLR0917', # Too many positional arguments
+    'PLR1722', # Use sys.exit()
+    'PLW3201', # Bad len comparison
+    'F821',    # Undefined name
+    # 'F401',    # Imported but unused
+    'PLR6104', # Nested function definition
+    'PLR0904', # Muitos métodos públicos
+]
+
+[tool.ruff.format]
+preview = true
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.taskipy.tasks]
+sort = "isort ."
+run = 'python main.py'
+lint = "ruff check ."
+format = "ruff format ."
+fix = "ruff check --fix ."
+test = "pytest -s -x --cov=app -vv"
+post_test = "coverage html"
+check = "task lint && task test"
+setup = "python app/scripts/setup_secrets.py"
+clean = """
+find . -type d -name __pycache__ -exec rm -r {} + && \
+find . -type f -name '*.pyc' -delete && \
+find . -type f -name '*.pyo' -delete && \
+find . -type f -name '*.pyd' -delete && \
+find . -type f -name '.coverage' -delete && \
+find . -type d -name '.pytest_cache' -exec rm -r {} + && \
+find . -type d -name '.ruff_cache' -exec rm -r {} + && \
+find . -type d -name '.mypy_cache' -exec rm -r {} + && \
+find . -type d -name 'htmlcov' -exec rm -r {} + && \
+find . -type f -name '.coverage.*' -delete && \
+find . -type f -name '*.orig' -delete && \
+find . -type f -name '*.rej' -delete && \
+find . -type f -name '*.egg-info' -delete
+"""
+
+
+
