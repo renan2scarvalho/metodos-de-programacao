@@ -1,26 +1,40 @@
-[tool.poetry]
+[project]
 name = "metodos-de-programacao"
+version = "1.0.0"
 description = "Estudo dos Principais Métodos de Programação"
-package-mode = false
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11,<4.0"
 
-[tool.poetry.dependencies]
-python = ">=3.11,<4.0"
-ipykernel = "^6.29.4"
-matplotlib = "^3.9.0"
-pandas = "^2.2.3"
+dependencies = [
+    "ipykernel>=6.29.4",
+    "matplotlib>=3.7.1",
+    "pandas>=2.2.3",
+    "tqdm>=4.67.1"
+]
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.3.5"
-pytest-cov = "^6.0.0"
-taskipy = "^1.14.1"
-ruff = "^0.9.10"
-httpx = "^0.28.1"
-isort = "^6.0.1"
+
+[project.urls]
+Homepage = "https://github.com/renan2scarvalho/metodos-de-programacao"
+Repository = "https://github.com/renan2scarvalho/metodos-de-programacao"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.5",
+  "pytest-cov>=6.0.0",
+  "taskipy>=1.14.1",
+  "ruff>=0.9.10",
+  "httpx>=0.28.1",
+  "isort>=6.0.1",
+]
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+packages = []
 
 [tool.isort]
 profile = "black"
@@ -32,7 +46,7 @@ import_heading_firstparty = "Módulos locais"
 [tool.ruff]
 line-length = 105
 extend-exclude = ['migrations']
-target-version = "py39"
+target-version = "py311"
 
 [tool.ruff.lint]
 preview = true
@@ -66,7 +80,7 @@ ignore = [
 
 [tool.ruff.format]
 preview = true
-quote-style = "double"
+quote-style = "single"
 indent-style = "space"
 skip-magic-trailing-comma = false
 line-ending = "auto"
@@ -96,6 +110,3 @@ find . -type f -name '*.orig' -delete && \
 find . -type f -name '*.rej' -delete && \
 find . -type f -name '*.egg-info' -delete
 """
-
-
-

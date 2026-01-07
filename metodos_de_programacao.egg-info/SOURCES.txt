@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+metodos_de_programacao.egg-info/PKG-INFO
+metodos_de_programacao.egg-info/SOURCES.txt
+metodos_de_programacao.egg-info/dependency_links.txt
+metodos_de_programacao.egg-info/requires.txt
+metodos_de_programacao.egg-info/top_level.txt

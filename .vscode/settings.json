@@ -1,11 +1,12 @@
 {
-  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.terminal.activateEnvironment": true,
   "python.analysis.indexing": true,
   "editor.formatOnSave": false,
   "git.ignoreLimitWarning": true,
   "files.trimTrailingWhitespace": true,
   "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff"
+    "editor.defaultFormatter": "ms-python.autopep8"
   },
-  "editor.rulers": [150]
+  "editor.rulers": [150],
+  "debug.inlineValues": false
 }
